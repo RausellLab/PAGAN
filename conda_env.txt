@@ -1,0 +1,33 @@
+# conda install nvidia/label/cuda-11.8.0::cuda-nvcc
+
+conda create --name pagan python=3.10 cudnn cudatoolkit nvidia/label/cuda-11.8.0::cuda-nvcc
+
+conda activate pagan
+
+# specify a tmp directory if needed
+export TMPDIR=''
+
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+# numpy==1.26.3 needed
+
+# https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html
+pip install torch_geometric==2.5.2
+# scikit_learn==1.4.1 and scipy==1.12.0 needed 
+
+pip install matplotlib==3.4.1 pandas==1.4.0 jupyterlab==3.5.2
+pip install openpyxl
+
+# Optional dependencies:
+pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.1.0+cu118.html
+pip install --force-reinstall --no-index pyg_lib==0.3.1 -f https://data.pyg.org/whl/torch-2.1.2+cu118.html
+
+# upgrade pandas
+pip install pandas==2.2.1
+
+pip install goatools==1.3.1 networkx==3.2.1 pybiomart==0.2.0 seaborn==0.13.2
+
+# https://github.com/intermine/intermine-ws-python?tab=readme-ov-file
+pip install intermine==1.13.0 
+
+# https://stackoverflow.com/questions/78551122/jupyter-lab-trying-to-load-tudataset-proteins-localfilesystem-mv-error
+pip install fsspec==2024.3.1 --force-reinstall
